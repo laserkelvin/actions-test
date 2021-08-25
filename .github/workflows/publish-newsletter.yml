@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Get current date
         id: date
-        run: echo "::set-output name=date::$(date +'%Y-%m')"
+        run: echo "::set-output name=date::$(date +'%Y.%m')"
       - name: Create Tag
         # this tags the current release with the year-month
         uses: negz/create-tag@v1
@@ -28,6 +28,6 @@ jobs:
           # Github Token
           token: ${{ secrets.GITHUB_TOKEN }}
           # Version (e.g. v0.1.0)
-          version: ${{ steps.date.outputs.date }}
+          version: v${{ steps.date.outputs.date }}
           # Tag message
           message: ${{ steps.date.outputs.date }}
