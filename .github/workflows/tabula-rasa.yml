@@ -19,10 +19,18 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       # delete files
-      - name: Tabula rasa
-        run: cat /dev/null > test_file.md && rm folder/* && mkdir folder
+      - name: Clear test_file.md
+        run: cat /dev/null > test_file.md
+      # folders may be missing and fail
+      - name: delete folder
+        if: always()
+        run: rm folder/*
+      - name: remake the folder
+        if: always()
+        run: mkdir folder
       - name: Push changes to repo files
         uses: actions-x/commit@v2
+        if: always()
         with:
           name: Github Actions Automation
           branch: main
