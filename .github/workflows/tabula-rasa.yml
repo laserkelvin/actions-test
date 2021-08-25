@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v2
       # delete files
       - name: Tabula rasa
-        run: cat /dev/null > test_file.md && rm folder/*
+        run: cat /dev/null > test_file.md && rm folder/* && mkdir folder
       - name: Push changes to repo files
         uses: actions-x/commit@v2
         with:
