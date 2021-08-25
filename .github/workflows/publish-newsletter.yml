@@ -23,11 +23,10 @@ jobs:
         run: echo "::set-output name=date::$(date +'%Y.%m')"
       - name: Create Tag
         # this tags the current release with the year-month
-        uses: negz/create-tag@v1
+        uses: ncipollo/release-action@v1.8.8
         with:
           # Github Token
           token: ${{ secrets.GITHUB_TOKEN }}
           # Version (e.g. v0.1.0)
-          version: v${{ steps.date.outputs.date }}
-          # Tag message
-          message: ${{ steps.date.outputs.date }}
+          tag: v${{ steps.date.outputs.date }}.0
+          artifacts: "test_file.md"
